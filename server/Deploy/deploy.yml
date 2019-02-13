@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minilytics
+  namespace: minilytics
+  labels:
+    app: minilytics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minilytics
+  template:
+    metadata:
+      labels:
+        app: minilytics
+    spec:
+      containers:
+      - name: minilytics
+        image: cfe84/minilytics
+        env:
+        # Create secret with this command:
+        # read -p "Namespace > " NAMESPACE &&
+        # read -p "Storage connection string > " STORAGE_CONNECTION_STRING &&
+        # read -sp "Table name > " TABLE_NAME &&
+        # kubectl create secret generic minilytics-secrets -n $NAMESPACE \
+        # --from-literal=STORAGE_CONNECTION_STRING=STORAGE_CONNECTION_STRING \
+        # --from-literal=TABLE_NAME=TABLE_NAME
+        - name: STORAGE_CONNECTION_STRING
+          valueFrom:
+          secretKeyRef:
+            name: minilytics-secrets
+            key: STORAGE_CONNECTION_STRING
+        - name: TABLE_NAME
+          secretKeyRef:
+            name: minilytics-secrets
+            key: TABLE_NAME
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: minilytics-service
+  namespace: minilytics
+spec:
+  selector:
+    app: minilytics
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP

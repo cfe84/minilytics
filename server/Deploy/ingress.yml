@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+  name: minilytics-ingress
+  namespace: minilytics
+spec:
+  rules:
+  - host: www.feval.ca # Should be variabilized and use helm instead.
+    http:
+      paths:
+      - backend:
+          serviceName: minilytics-service
+          servicePort: 80
+        path: /a
+  tls:
+  - hosts:
+    - www.feval.ca
+    secretName: tls-secret
