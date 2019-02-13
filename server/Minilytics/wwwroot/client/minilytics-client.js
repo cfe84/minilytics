@@ -1,6 +1,6 @@
 (function () {
     function generateRandomUserId() {
-        return Math.random() * Number.MAX_VALUE; 
+        return Math.random() * Number.MAX_SAFE_INTEGER; 
     }
     function getUserId() {
         if (localStorage) {
