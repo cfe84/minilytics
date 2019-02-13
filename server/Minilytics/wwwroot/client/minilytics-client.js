@@ -26,7 +26,7 @@
 
         var request = new XMLHttpRequest();
         request.open('POST', '/ana/api/events', true);
-        request.write(JSON.stringify(message));
-        request.send();
+        request.setRequestHeader("content-type", "application/json");  
+        request.send(JSON.stringify(message));
     }, 1000);
 })();
