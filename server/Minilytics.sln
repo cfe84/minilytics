@@ -9,6 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureDataStore", "AzureData
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{09EF9CC3-587C-495B-B36D-31D0F685DAE4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{83F65581-A91C-43C4-A1EC-869B49BBC964}"
+	ProjectSection(SolutionItems) = preProject
+		Deploy\deploy.yml = Deploy\deploy.yml
+		Dockerfile = Dockerfile
+		Deploy\ingress.yml = Deploy\ingress.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

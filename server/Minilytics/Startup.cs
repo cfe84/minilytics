@@ -43,7 +43,7 @@ namespace Minilytics
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }
