@@ -15,7 +15,7 @@ spec:
       - backend:
           serviceName: minilytics-service
           servicePort: 80
-        path: /a
+        path: /ana
   tls:
   - hosts:
     - www.feval.ca

@@ -20,13 +20,14 @@ namespace Minilytics.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task Post([FromBody]Event value)
+        public async Task<string> Post([FromBody]Event value)
         {
             value.EventId = Guid.NewGuid().ToString();
             value.IpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
             value.ReceivedDateTime = DateTime.UtcNow;
             value.SentDateTime = DateTime.UtcNow;
             await eventStore.StoreEventAsync(value);
+            return "OK";
         }
         
     }

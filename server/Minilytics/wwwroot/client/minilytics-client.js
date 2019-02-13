@@ -25,7 +25,7 @@
         };
 
         var request = new XMLHttpRequest();
-        request.open('POST', '/a/api/events', true);
+        request.open('POST', '/ana/api/events', true);
         request.write(JSON.stringify(message));
         request.send();
     }, 1000);
