@@ -19,22 +19,23 @@ spec:
       - name: minilytics
         image: cfe84/minilytics
         env:
-        # Create secret with this command:
-        # read -p "Namespace > " NAMESPACE &&
-        # read -p "Storage connection string > " STORAGE_CONNECTION_STRING &&
-        # read -sp "Table name > " TABLE_NAME &&
-        # kubectl create secret generic minilytics-secrets -n $NAMESPACE \
-        # --from-literal=STORAGE_CONNECTION_STRING=STORAGE_CONNECTION_STRING \
-        # --from-literal=TABLE_NAME=TABLE_NAME
+        ## Create secret with this command:
+        read -p "Namespace > " NAMESPACE &&
+        read -p "Storage connection string > " STORAGE_CONNECTION_STRING &&
+        read -p "Table name > " TABLE_NAME &&
+        kubectl create secret generic minilytics-secrets -n $NAMESPACE \
+        --from-literal=STORAGE_CONNECTION_STRING=$STORAGE_CONNECTION_STRING \
+        --from-literal=TABLE_NAME=$TABLE_NAME
         - name: STORAGE_CONNECTION_STRING
           valueFrom:
-          secretKeyRef:
-            name: minilytics-secrets
-            key: STORAGE_CONNECTION_STRING
+            secretKeyRef:
+              name: minilytics-secrets
+              key: STORAGE_CONNECTION_STRING
         - name: TABLE_NAME
-          secretKeyRef:
-            name: minilytics-secrets
-            key: TABLE_NAME
+          valueFrom:
+            secretKeyRef:
+              name: minilytics-secrets
+              key: TABLE_NAME
 
 ---
 
@@ -51,3 +52,4 @@ spec:
     port: 80
     targetPort: 80
   type: ClusterIP
+  externalTrafficPolicy: Local

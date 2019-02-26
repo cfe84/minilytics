@@ -4,6 +4,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/configuration-snippet: proxy_set_header x-forwarded-ip "$remote_addr";
     certmanager.k8s.io/cluster-issuer: letsencrypt-prod
   name: minilytics-ingress
   namespace: minilytics

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Minilytics.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/")]
     public class EventsController : Controller
     {
         IEventStore eventStore;
@@ -18,17 +18,30 @@ namespace Minilytics.Controllers
         }
 
 
-        // POST api/values
-        [HttpPost]
-        public async Task<string> Post([FromBody]Event value)
+        [HttpPost("events")]
+        public async Task<string> PostEvent([FromBody]Event value)
         {
             value.EventId = Guid.NewGuid().ToString();
-            value.IpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+            if (Request.Headers.ContainsKey("x-forwarded-ip"))
+                value.IpAddress = Request.Headers["x-forwarded-ip"];
+            else
+                value.IpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
             value.ReceivedDateTime = DateTime.UtcNow;
-            value.SentDateTime = DateTime.UtcNow;
             await eventStore.StoreEventAsync(value);
             return "OK";
         }
-        
+
+        [HttpPost("exceptions")]
+        public async Task<string> PostException([FromBody]ClientException value)
+        {
+            value.ExceptionId = Guid.NewGuid().ToString();
+            if (Request.Headers.ContainsKey("x-forwarded-ip"))
+                value.IpAddress = Request.Headers["x-forwarded-ip"];
+            else
+                value.IpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+            value.ReceivedDateTime = DateTime.UtcNow;
+            await eventStore.StoreExceptionAsync(value);
+            return "OK";
+        }
     }
 }

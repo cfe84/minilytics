@@ -16,7 +16,8 @@ namespace Minilytics
     public class Startup
     {
         static string STORAGE_CONNECTION_STRING = Environment.GetEnvironmentVariable("STORAGE_CONNECTION_STRING");
-        static string TABLE_NAME = Environment.GetEnvironmentVariable("TABLE_NAME") ?? "pageviews";
+        static string EVENTS_TABLE_NAME = Environment.GetEnvironmentVariable("TABLE_NAME") ?? "pageviews";
+        static string EXCEPTION_TABLE_NAME = "exceptions";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,7 +32,8 @@ namespace Minilytics
             services.AddSingleton<IEventStore>(
                 new AzureEventStore(
                     STORAGE_CONNECTION_STRING, 
-                    TABLE_NAME)
+                    EVENTS_TABLE_NAME,
+                    EXCEPTION_TABLE_NAME)
                     );
             services.AddMvc();
         }
