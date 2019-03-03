@@ -20,12 +20,12 @@ spec:
         image: cfe84/minilytics
         env:
         ## Create secret with this command:
-        read -p "Namespace > " NAMESPACE &&
-        read -p "Storage connection string > " STORAGE_CONNECTION_STRING &&
-        read -p "Table name > " TABLE_NAME &&
-        kubectl create secret generic minilytics-secrets -n $NAMESPACE \
-        --from-literal=STORAGE_CONNECTION_STRING=$STORAGE_CONNECTION_STRING \
-        --from-literal=TABLE_NAME=$TABLE_NAME
+        # read -p "Namespace > " NAMESPACE &&
+        # read -p "Storage connection string > " STORAGE_CONNECTION_STRING &&
+        # read -p "Table name > " TABLE_NAME &&
+        # kubectl create secret generic minilytics-secrets -n $NAMESPACE \
+        # --from-literal=STORAGE_CONNECTION_STRING=$STORAGE_CONNECTION_STRING \
+        # --from-literal=TABLE_NAME=$TABLE_NAME
         - name: STORAGE_CONNECTION_STRING
           valueFrom:
             secretKeyRef:
