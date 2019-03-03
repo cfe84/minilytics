@@ -15,6 +15,7 @@ namespace Contracts
         public string Referrer { get; set; }
         public string UserId { get; set; }
         public string UserType { get; set; }
+        public int UserTotalVisits { get; set; }
         public DateTime UserFirstVisitDate { get; set; }
         public DateTime PageFirstViewDate { get; set; }
         public int PageViewCount { get; set; }

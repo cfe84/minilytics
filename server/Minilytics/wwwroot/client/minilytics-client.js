@@ -98,6 +98,7 @@
                 userId: user.userId,
                 userType: user.userType,
                 userFirstVisitDate: user.firstVisitDate,
+                userTotalVisits: user.totalPages,
                 pageFirstViewDate: view.firstViewDate,
                 pageViewCount: view.viewCount,
                 browserAppCodeName: navigator ? navigator.appCodeName : NO_NAVIGATOR_MSG,
