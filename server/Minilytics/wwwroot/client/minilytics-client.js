@@ -43,21 +43,27 @@
         return user;
     }
 
+    function newViewStats() {
+        return {
+            firstViewDate: NOW,
+            viewCount: 1
+        };
+    }
+
     function getPageViewStats() {
         if (localStorage) {
             var key = VIEW_LOCALSTORAGE_KEY + document.location.pathname.replace(/[^a-zA-Z0-9]/g, "");
             var serializedView = localStorage.getItem(key);
             if (!serializedView) {
-                view = {
-                    firstViewDate: NOW,
-                    viewCount: 1
-                };
+                view = newViewStats();
             } else {
                 view = JSON.parse(serializedView);
                 view.viewCount++;
             }
             localStorage.setItem(key, JSON.stringify(view));
             return view;
+        } else {
+            return newViewStats();
         }
     }
 
