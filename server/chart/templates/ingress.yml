@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/configuration-snippet: proxy_set_header x-forwarded-ip "$remote_addr";
     certmanager.k8s.io/cluster-issuer: letsencrypt-prod
   name: minilytics-ingress
-  namespace: minilytics
+  namespace: {{ .Values.namespace }}
 spec:
   rules:
   - host: www.feval.ca # Should be variabilized and use helm instead.
