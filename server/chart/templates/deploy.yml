@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: minilytics
-        image: cfe84/minilytics
+        image: cfe84/minilytics:{{ .Values.imageVersion }}
         env:
         - name: STORAGE_CONNECTION_STRING
           valueFrom:
