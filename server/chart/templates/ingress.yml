@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/configuration-snippet: proxy_set_header x-forwarded-ip "$remote_addr";
     certmanager.k8s.io/cluster-issuer: letsencrypt-prod
   name: minilytics-ingress
@@ -16,7 +16,7 @@ spec:
       - backend:
           serviceName: minilytics-service
           servicePort: 80
-        path: /ana
+        path: /ana(/|$)(.*)
   tls:
   - hosts:
     - www.feval.ca
