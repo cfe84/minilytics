@@ -7,6 +7,6 @@ spec:
   secretName: tls-secret
   issuerRef:
     name: letsencrypt-prod
-  commonName: www.feval.ca
+  commonName: {{ .Values.host }}
   dnsNames:
-  - www.feval.ca
+  - {{ .Values.host }}

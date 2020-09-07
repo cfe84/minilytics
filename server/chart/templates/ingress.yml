@@ -10,14 +10,14 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   rules:
-  - host: www.feval.ca # Should be variabilized and use helm instead.
+  - host: {{ .Values.host }}
     http:
       paths:
       - backend:
           serviceName: minilytics-service
           servicePort: 80
-        path: /ana(/|$)(.*)
+        path: {{ .Values.path }}
   tls:
   - hosts:
-    - www.feval.ca
+    - {{ .Values.host }}
     secretName: tls-secret
