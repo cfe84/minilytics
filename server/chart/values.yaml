@@ -1,5 +1,5 @@
 tableName: pageviews
 namespace: minilytics
 imageVersion: latest
-host: www.feval.ca
-path: /ana(/|$)(.*)
+host: a.feval.ca
+path: /(.*)
