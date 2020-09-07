@@ -1,5 +1,6 @@
 tableName: pageviews
+storageConnectionString: 
 namespace: minilytics
 imageVersion: latest
 host: a.feval.ca
-path: /(.*)
+path: /ana/(.*)
