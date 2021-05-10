@@ -1,10 +1,10 @@
-(function () {
+function minilytics(host = "") {
     var NOW = new Date();
     var USER_LOCALSTORAGE_KEY = "user";
     var VIEW_LOCALSTORAGE_KEY = "views-";
     var TEST_LOCALSTORAGE_KEY = "test";
-    var EVENTS_ENDPOINT = '/ana/api/events';
-    var EXCEPTION_ENDPOINT = '/ana/api/exceptions';
+    var EVENTS_ENDPOINT = host + '/ana/api/events';
+    var EXCEPTION_ENDPOINT = host + '/ana/api/exceptions';
     var PAGEVIEW_EVENTTYPE = "pageview";
     var USERTYPES = {
         repeat: "repeat",
@@ -130,4 +130,4 @@
             request.send(JSON.stringify(message));
         }
     }, 1000);
-})();
+}
